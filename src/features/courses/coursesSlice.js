@@ -1,26 +1,30 @@
-/*los reducer actualizan el estado */
-import { createSlice } from '@reduxjs/toolkit'
+/*los reducer actualizan el estado, son funciones puras en donde esta la logica para modificar el state*/
+import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = [
-    {
-        id:1,
-        title:"course 1"
-    }
-]
+const initialState = {
+  /* este es nuestro state */
+  courses: [],
+  cart: [],
+  favorites: []
+};
 
-export const courseSlice= createSlice({
-    name:"courses",
-    initialState:[],
-    reducers:{
-      getData:(state,action)=>{
-        state.push(action.payload)
-        //state=[...action.payload]
-        //state.splice(action.payload)
-      },
-      addToCart:(state,action)=>{
-        
-      }
-    }
-})
-export const {getData} = courseSlice.actions
-export default courseSlice.reducer
+export const courseSlice = createSlice({
+  name: "courses",
+  initialState: initialState,
+  reducers: {
+    getData: (state, action) => {
+      state.courses.push(action.payload);
+    },
+    addToCart: (state, action) => {
+      state.cart.push(action.payload);
+    },
+    deleteToCart: (state, action) => {},
+    addToFavorites: (state, action) => {
+      state.favorites.push(action.payload);
+    },
+  },
+});
+
+export const { getData, addToCart, deleteToCart, addToFavorites } =
+  courseSlice.actions;
+export default courseSlice.reducer;

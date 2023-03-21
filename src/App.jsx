@@ -1,15 +1,17 @@
-
+import { Route,Routes } from 'react-router-dom'
 import './App.css'
-import { useSelector } from 'react-redux'
 import Courses from './components/Courses'
+import ShoppingCart from './components/ShoppingCart'
+import Favorites from './components/Favorites'
 function App() {
-  const courseState= useSelector(state=>state.courses)
  
-  console.log(courseState)
-
   return (
-    <div className="App">
-    <Courses/>
+    <div>
+    <Routes>
+      <Route path='/' element={<Courses/>}/>
+      <Route path='/cart' element={<ShoppingCart/>}/>
+      <Route path='/favorite' element={<Favorites/>}/>
+    </Routes>
     </div>
   )
 }
