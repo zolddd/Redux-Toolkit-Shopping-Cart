@@ -25,11 +25,15 @@ export default function Courses() {
     console.log("Añadido al carrito");
     console.log(course)
     dispatch(addToCart(course));
-    navigate("/cart")
+    /* navigate("/cart") */
   };
   const handlerFavorite=(course)=>{
     dispatch(addToFavorites(course));
     navigate("/favorite")
+  }
+  const handler=()=>{
+    console.log("lola");
+    navigate("/cart")
   }
 
   useEffect(() => {
@@ -47,11 +51,13 @@ export default function Courses() {
     /*V es el arreglo con los datos de la b, lo que se hizo arriba es destruturarlo*/
     console.log("imprimiendo v:");
     console.log(v);
+  
     if (courses.length === 0) return <h1>No courses find</h1>;
     return v.map((course) => (
       <div key={course.id}>
         <h1>{course.title}</h1>
         <button onClick={() => handlerClick(course)}>add a cart</button>
+        <button onClick={() => handler()}>ir a cart</button>
         <button onClick={() => handlerFavorite(course)}>add a favorites</button>
       </div>
     ))
