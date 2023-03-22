@@ -56,10 +56,12 @@ export const courseSlice = createSlice({
     },
     deleteToFavorites: (state, action) => {
       let itemToDelete = action.payload;
-      let result=state.favorites.filter(el=> el!= itemToDelete)
-      /*yahir  */
-     
 
+      return {
+        ...state,
+        favorites: state.favorites.filter((item) => item.id !== itemToDelete.id),
+      }
+     
     }
   },
 });

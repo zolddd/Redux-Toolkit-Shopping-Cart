@@ -29,11 +29,14 @@ export default function Courses() {
   };
   const handlerFavorite=(course)=>{
     dispatch(addToFavorites(course));
-    navigate("/favorite")
+   /*  navigate("/favorite") */
   }
   const handler=()=>{
     console.log("lola");
     navigate("/cart")
+  }
+  const irFavoritos=()=>{
+    navigate("/favorite")
   }
 
   useEffect(() => {
@@ -59,6 +62,7 @@ export default function Courses() {
         <button onClick={() => handlerClick(course)}>add a cart</button>
         <button onClick={() => handler()}>ir a cart</button>
         <button onClick={() => handlerFavorite(course)}>add a favorites</button>
+        <button onClick={() => irFavoritos(course)}>ir a favorites</button>
       </div>
     ))
   };
