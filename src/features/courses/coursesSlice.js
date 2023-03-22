@@ -17,20 +17,20 @@ export const courseSlice = createSlice({
     },
     addToCart: (state, action) => {
       let newItem = action.payload;
-      let itemInCart = state.cart.find((item) => item.id === newItem.id);
+      let itemInCart = state.cart.find(
+        (item) => item.id === newItem.id
+      );
 
       return itemInCart
         ? {
             ...state,
             cart: state.cart.map((item) =>
-              item.id === newItem.id
-                ? { ...item, quantity: item.quantity + 1 }
-                : item
+              item.id === newItem.id ? { ...itemInCart } : newItem
             ),
           }
         : {
             ...state,
-            cart: [...state.cart, { ...newItem, quantity: 1 }],
+            cart: [...state.cart, { ...newItem }],
           };
     },
     deleteToCart: (state, action) => {
