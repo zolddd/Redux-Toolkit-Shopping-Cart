@@ -16,8 +16,7 @@ export const courseSlice = createSlice({
       state.courses.push(action.payload);
     },
     addToCart: (state, action) => {
-      
-      let newItem = action.payload; 
+      let newItem = action.payload;
       let itemInCart = state.cart.find((item) => item.id === newItem.id);
 
       return itemInCart
@@ -52,20 +51,41 @@ export const courseSlice = createSlice({
           };
     },
     addToFavorites: (state, action) => {
-      state.favorites.push(action.payload);
+      let newItem = action.payload;
+      let itemInFavorites = state.favorites.find(
+        (item) => item.id === newItem.id
+      );
+
+      return itemInFavorites
+        ? {
+            ...state,
+            favorites: state.favorites.map((item) =>
+              item.id === newItem.id ? { ...itemInFavorites } : newItem
+            ),
+          }
+        : {
+            ...state,
+            favorites: [...state.favorites, { ...newItem }],
+          };
     },
     deleteToFavorites: (state, action) => {
       let itemToDelete = action.payload;
 
       return {
         ...state,
-        favorites: state.favorites.filter((item) => item.id !== itemToDelete.id),
-      }
-     
-    }
+        favorites: state.favorites.filter(
+          (item) => item.id !== itemToDelete.id
+        ),
+      };
+    },
   },
 });
 
-export const { getData, addToCart, deleteToCart, addToFavorites,deleteToFavorites } =
-  courseSlice.actions;
+export const {
+  getData,
+  addToCart,
+  deleteToCart,
+  addToFavorites,
+  deleteToFavorites
+} = courseSlice.actions;
 export default courseSlice.reducer;
